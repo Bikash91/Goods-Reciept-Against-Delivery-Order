@@ -1,0 +1,100 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:ci="com.sap.upl.GRADeliveryorder.controller" controllerName="com.sap.upl.GRADeliveryorder.controller.GRDeliveryorder"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>title}" id="page" busy="{settingsModel>/busy}" showHeader="false">
+		<!--<headerContent>
+			<ToggleButton text="{i18n>language}" tooltip="{i18n>changeLan}" enabled="true" pressed="true" press="onChangeLanguage"/>
+		</headerContent>-->
+		<content>
+			<VBox>
+				<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="3" labelSpanS="12"
+					adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+					singleContainerFullSize="false" id="idDeliveryItem">
+					<f:content>
+						<Label text="{i18n>wareHouse}" design="Bold" required="true"/>
+						<!--<Input change="onChange" value="{deliveryModel>/WAREHOUSE}" required="true" maxLength="3" name="warehouse" id="warehouse"
+							placeholder="{i18n>wareHouse}"></Input>-->
+						<ComboBox items="{/WHHELPSet}" placeholder="{i18n>wareHouse}" name="warehouse" id="warehouse" change="onChange" required="true">
+							<core:Item key="{WHNUMBER}" text="{WHNUMBER}"/>
+						</ComboBox>
+						
+						<Label text="{i18n>doNumber}" design="Bold" required="true"/>
+						<Input id="donumber" name="DONumber" maxLength="10" required="true" value="{deliveryModel>/DONUMBER}" placeholder="{i18n>doNumber}"
+							change="onChange"></Input>
+						<Label text="{i18n>itemNumber}" design="Bold" required="true"/>
+						<ComboBox items="{itemModel>/results}" change="checkItemNumber" name="ItemNumber" required="true" id="itemnumber" class="itemnumber"
+							showSecondaryValues="true">
+							<core:ListItem key="{itemModel>DOITEMNUM}" text="{itemModel>DOITEMNUM}" additionalText="{itemModel>ITEMCODE}"/>
+						</ComboBox>
+						<Label text="{i18n>itemcode}" design="Bold" required="true"/>
+						<Input editable="false" id="itemCode" value="{deliveryModel>/ITEMCODE}" name="ItemCode" maxLength="18" placeholder="{i18n>itemcode}"
+							required="true"></Input>
+						<Label text="{i18n>batch}" design="Bold" required="true"/>
+						<Input visible="{settingsModel>/batchVisible}" change="onChange" value="{deliveryModel>/BATCH}" required="true" maxLength="10" name="Batch"
+							id="batch" placeholder="{i18n>batch}"></Input>
+						<Label text="{i18n>plant}" design="Bold" required="true"/>
+						<Input visible="false" editable="false" value="{deliveryModel>/PLANT}" required="true" maxLength="4" placeholder="{i18n>plant}"></Input>
+						<Label text="{i18n>quantiy}" design="Bold" required="true"/>
+						<Input maxLength="13" type="Number" value="{deliveryModel>/QUANTITY}" required="true" placeholder="{i18n>quantiy}" name="Quantity"
+							id="quant" change="onChange"></Input>
+						<Label text="{i18n>unit}" design="Bold" required="true"/>
+						<Input editable="false" maxLength="13" value="{deliveryModel>/UNIT}" required="true" placeholder="{i18n>unit}" name="Unit" id="unit"></Input>
+						<Label text="{i18n>storageBin}" design="Bold" required="true"/>
+						<Input change="onChange" value="{deliveryModel>/SOURCEBIN}" maxLength="20" id="storageBin" required="true" name="storageBin"
+							placeholder="{i18n>storageBin}"></Input>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+			<VBox >
+				<Table id="idDOItem" inset="false" alternateRowColors="true" items="{doItemData>/results}" noDataText="{i18n>nodata}">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Title text="{i18n>items}" level="H2" id="tableTitle"/>
+							<ToolbarSpacer/>
+							<Button icon="sap-icon://add" type="Emphasized" press="addLineItem"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column demandPopin="true">
+							<Label design="Bold" textAlign="Left" text="{i18n>itemNumber}"/>
+						</Column>
+						<Column demandPopin="true">
+							<Label design="Bold" textAlign="Left" text="{i18n>itemcode}"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Desktop">
+							<Label design="Bold" textAlign="Left" text="{i18n>batch}"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Desktop">
+							<Label design="Bold" textAlign="Left" text="{i18n>storageBin}"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Desktop">
+							<Label design="Bold" textAlign="Left" text="{i18n>quantiy}"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Desktop">
+							<Label design="Bold" textAlign="Left" text="{i18n>action}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem >
+							<cells>
+								<Text text="{doItemData>DOITEMNUM}"/>
+								<Text text="{doItemData>ITEMCODE}"/>
+								<Text text="{doItemData>BATCH}"/>
+								<Text text="{doItemData>SOURCEBIN}"/>
+								<Text text="{doItemData>QUANTITY}"/>
+								<Button icon="sap-icon://delete" type="Reject" press="onDeleteLineItem"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="{i18n>post}" tooltip="{i18n>post}" press="onPressPost" icon="sap-icon://post" type="Emphasized"
+					enabled="{settingsModel>/enablePost}"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

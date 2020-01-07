@@ -1,0 +1,81 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:sap="http://www.sap.com/Protocols/SAPData"
+	xmlns:ux="http://www.sap.com/Protocols/OData4SAP/UX" xmlns:gp="http://www.sap.com/Protocols/SAPData/GenericPlayer" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZWMS_UPL_GI_DO_SRV" sap:schema-version="1" xml:lang="en">
+			<EntityType Name="DOITEM" sap:content-version="1">
+				<Key><PropertyRef Name="DONUMBER"/><PropertyRef Name="DOITEMNUM"/></Key><Property Name="DONUMBER" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Sales Document"/><Property Name="DOITEMNUM" Type="Edm.String" Nullable="false" MaxLength="6" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Sales Document Item"/><Property Name="ITEMCODE" Type="Edm.String" Nullable="false" MaxLength="18" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Material Number"/><Property Name="QUANTITY" Type="Edm.String" Nullable="false" MaxLength="13" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Target quantity in sales units"/><Property Name="UNIT" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Base Uint"/><Property Name="BATCH" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Batch"/><Property Name="PLANT" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="STORAGELOC" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="GIHEADER" sap:content-version="1">
+				<Key><PropertyRef Name="DONUMBER"/></Key><Property Name="WAREHOUSE" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="DONUMBER" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="MESSAGE" Type="Edm.String" Nullable="false" MaxLength="400" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><NavigationProperty Name="GIHEADERTOITEM" Relationship="ZWMS_UPL_GI_DO_SRV.GIPOSTING" FromRole="FromRole_GIPOSTING"
+					ToRole="ToRole_GIPOSTING"/></EntityType>
+			<EntityType Name="GIITEM" sap:content-version="1">
+				<Key><PropertyRef Name="DONUMBER"/><PropertyRef Name="DOITEMNUM"/></Key><Property Name="DONUMBER" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="DOITEMNUM" Type="Edm.String" Nullable="false" MaxLength="6" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ITEMCODE" Type="Edm.String" Nullable="false" MaxLength="18" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="BATCH" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="QUANTITY" Type="Edm.String" Nullable="false" MaxLength="13" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="UNIT" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="SOURCEBIN" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PLANT" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="STORAGELOC" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="CHECKFIELDS" sap:content-version="1">
+				<Key><PropertyRef Name="WAREHOUSE"/></Key><Property Name="WAREHOUSE" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Ware House"/><Property Name="PLANT" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Plant"/><Property Name="ITEMCODE" Type="Edm.String" Nullable="false" MaxLength="18" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Material"/><Property Name="BATCH" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Batch"/><Property Name="QUANTITY" Type="Edm.String" Nullable="false" MaxLength="18" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Quantity"/><Property Name="SOURCEBIN" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Source Bin"/><Property Name="ERROR_INDICATOR" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Error Indicator"/><Property Name="ERROR_TYPE" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Error type"/><Property Name="MESSAGE" Type="Edm.String" Nullable="false" MaxLength="200" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Message"/></EntityType>
+			<EntityType Name="DOHEADER" sap:content-version="1">
+				<Key><PropertyRef Name="DONUMBER"/></Key><Property Name="DONUMBER" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Sales Document"/><NavigationProperty Name="DOHEADERTOITEM" Relationship="ZWMS_UPL_GI_DO_SRV.DODETAILS" FromRole="FromRole_DODETAILS"
+					ToRole="ToRole_DODETAILS"/></EntityType>
+			<EntityType Name="MANAGEBATCH" sap:content-version="1">
+				<Key><PropertyRef Name="WAREHOUSE"/><PropertyRef Name="ITEMCODE"/><PropertyRef Name="PLANT"/></Key><Property Name="WAREHOUSE" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Ware House"/><Property Name="ITEMCODE" Type="Edm.String" Nullable="false" MaxLength="18" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Item Code"/><Property Name="PLANT" Type="Edm.String" Nullable="false" MaxLength="4" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Plant"/><Property Name="BATCHINDICATOR" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Batch Indicator"/><Property Name="ERROR_INDICATOR" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Error Indicator"/><Property Name="ERROR_TYPE" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Error type"/><Property Name="MESSAGE" Type="Edm.String" Nullable="false" MaxLength="200" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Message"/></EntityType>
+			<Association Name="DODETAILS" sap:content-version="1"><End Type="ZWMS_UPL_GI_DO_SRV.DOHEADER" Multiplicity="1" Role="FromRole_DODETAILS"/><End Type="ZWMS_UPL_GI_DO_SRV.DOITEM" Multiplicity="*" Role="ToRole_DODETAILS"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_DODETAILS"><PropertyRef Name="DONUMBER"/></Principal>
+					<Dependent Role="ToRole_DODETAILS"><PropertyRef Name="DONUMBER"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="GIPOSTING" sap:content-version="1"><End Type="ZWMS_UPL_GI_DO_SRV.GIHEADER" Multiplicity="1" Role="FromRole_GIPOSTING"/><End Type="ZWMS_UPL_GI_DO_SRV.GIITEM" Multiplicity="*" Role="ToRole_GIPOSTING"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_GIPOSTING"><PropertyRef Name="DONUMBER"/></Principal>
+					<Dependent Role="ToRole_GIPOSTING"><PropertyRef Name="DOITEMNUM"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZWMS_UPL_GI_DO_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="DOITEMSet" EntityType="ZWMS_UPL_GI_DO_SRV.DOITEM" sap:content-version="1" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false"/><EntitySet Name="GIHEADERSet" EntityType="ZWMS_UPL_GI_DO_SRV.GIHEADER" sap:content-version="1" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false"/><EntitySet Name="GIITEMSet" EntityType="ZWMS_UPL_GI_DO_SRV.GIITEM" sap:content-version="1" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false"/><EntitySet Name="CHECKFIELDSSet" EntityType="ZWMS_UPL_GI_DO_SRV.CHECKFIELDS" sap:content-version="1" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/><EntitySet Name="DOHEADERSet" EntityType="ZWMS_UPL_GI_DO_SRV.DOHEADER" sap:content-version="1" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false"/><EntitySet Name="MANAGEBATCHSet" EntityType="ZWMS_UPL_GI_DO_SRV.MANAGEBATCH" sap:content-version="1" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/>
+				<AssociationSet Name="DODETAILSSet" Association="ZWMS_UPL_GI_DO_SRV.DODETAILS" deletable="false" creatable="false" updatable="false"><End EntitySet="DOHEADERSet" Role="FromRole_DODETAILS"/><End EntitySet="DOITEMSet" Role="ToRole_DODETAILS"/></AssociationSet>
+				<AssociationSet Name="GIPOSTINGSet" Association="ZWMS_UPL_GI_DO_SRV.GIPOSTING" deletable="false" creatable="false" updatable="false"><End EntitySet="GIHEADERSet" Role="FromRole_GIPOSTING"/><End EntitySet="GIITEMSet" Role="ToRole_GIPOSTING"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="https://gwaas-ae7888026.hana.ondemand.com:443/odata/SAP/ZWMS_UPL_GI_DO_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="https://gwaas-ae7888026.hana.ondemand.com:443/odata/SAP/ZWMS_UPL_GI_DO_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
